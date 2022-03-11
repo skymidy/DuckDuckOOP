@@ -1,18 +1,37 @@
 package com.company;
 
-public abstract class Duck
-{
-    abstract void display();
-    void quack(int times)
-    {
-        for (int i = 0; i < times; i++)
-        {
-            System.out.println("Angry Quack!!");
-        }
+public class Duck {
+
+    private Strategy quackStrategy;
+    private Strategy swimStrategy;
+    private Strategy flyStrategy;
+    private Strategy walkStrategy;
+
+    public Duck(Strategy quackStrategy, Strategy swimStrategy, Strategy flyStrategy, Strategy walkStrategy) {
+        this.quackStrategy = quackStrategy;
+        this.swimStrategy = swimStrategy;
+        this.flyStrategy = flyStrategy;
+        this.walkStrategy = walkStrategy;
     }
-    void swim(int distance)
-    {
-        System.out.printf("swims front for %d meters\n", distance);
+
+    public void display() {
+        System.out.print("Duck: ");
+    }
+
+    public void quack() {
+        quackStrategy.action();
+    }
+
+    public void swim() {
+        swimStrategy.action();
+    }
+
+    public void fly() {
+        flyStrategy.action();
+    }
+
+    public void walk() {
+        walkStrategy.action();
     }
 
 }
